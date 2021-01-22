@@ -12,12 +12,17 @@ class Fml {
     private $halfname;
 
     function __construct($path) {
-        $this->path = $path;
-        $this->file = new \CodeIgniter\Files\File($this->path);
-        $this->size = $this->file->getSize();
-        $this->name = $this->file->getFilename();
-        $this->halfName = pathinfo($this->path, PATHINFO_FILENAME);
-        $this->extension = $this->file->getExtension();
+        try {
+            $this->path = $path;
+            $this->file = new \CodeIgniter\Files\File($this->path);
+            $this->size = $this->file->getSize();
+            $this->name = $this->file->getFilename();
+            $this->halfName = pathinfo($this->path, PATHINFO_FILENAME);
+            $this->extension = $this->file->getExtension();    
+        }
+        catch(\Exception $e) {
+        }
+        
     }
 
 
